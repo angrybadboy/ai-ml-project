@@ -17,6 +17,7 @@ export const authOptions: NextAuthOptions = {
   },
   pages: {
     signIn: "/login",
+    error: "/login",
   },
   callbacks: {
     async jwt({ token, user }) {
@@ -35,7 +36,11 @@ export const authOptions: NextAuthOptions = {
       // 상대 경로면 baseUrl 붙이기
       if (url.startsWith("/")) return `${baseUrl}${url}`;
       // 같은 도메인이면 허용
-      if (new URL(url).origin === baseUrl) return url;
+      try {
+        if (new URL(url).origin === baseUrl) return url;
+      } catch {
+        // URL 파싱 실패 시 대시보드로
+      }
       return `${baseUrl}/dashboard`;
     },
   },

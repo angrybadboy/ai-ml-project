@@ -5,7 +5,7 @@ import { signIn } from "next-auth/react";
 export default function LoginButton() {
   return (
     <button
-      onClick={() => signIn("google", { callbackUrl: "/dashboard" })}
+      onClick={() => signIn("google", { callbackUrl: `${window.location.origin}/dashboard` })}
       className="flex items-center gap-3 rounded-lg border border-gray-300 bg-white px-6 py-3 text-sm font-medium text-gray-700 shadow-sm transition-all hover:bg-gray-50 hover:shadow-md active:scale-[0.98]"
     >
       <svg className="h-5 w-5" viewBox="0 0 24 24">
